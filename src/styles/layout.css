@@ -1,0 +1,40 @@
+.app-shell { min-height: 100vh; }
+.topbar {
+  position: fixed; inset: 0 0 auto; z-index: 5; display: flex; height: 37px; align-items: center;
+  justify-content: space-between; border-bottom: 1px solid var(--border); background: #0a101a;
+}
+.brand { display: flex; width: 96px; height: 100%; flex: 0 0 96px; align-items: center; gap: 5px; padding-left: 9px; border-right: 1px solid var(--border); }
+.brand-icon { display: grid; width: 15px; height: 15px; place-items: center; border-radius: 4px; background: var(--gold); color: #111823; font-size: 10px; font-weight: 850; }
+.brand-name { display: flex; flex-direction: column; gap: 1px; }
+.brand-name strong { font-size: 8px; line-height: 1; letter-spacing: .02em; }
+.brand-name small { color: #77869a; font-size: 4px; line-height: 1; letter-spacing: .12em; }
+.topbar-meta { display: flex; height: 100%; align-items: center; gap: 28px; padding: 0 17px; }
+.utc-clock { color: #8593a6; font-size: 6px; font-variant-numeric: tabular-nums; }
+.connection-pill, .state-badge, .environment-pill, .symbol-pill, .live-badge {
+  display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; border-radius: 999px;
+}
+.connection-pill { min-width: 63px; gap: 4px; padding: 4px 8px; background: rgba(15, 123, 81, .22); color: #2be09f; font-size: 6px; font-weight: 750; letter-spacing: .06em; }
+.connection-pill > span, .live-badge > span { width: 4px; height: 4px; border-radius: 50%; background: currentColor; box-shadow: 0 0 5px currentColor; }
+.connection-pill.reconnecting { background: rgba(176, 113, 24, .2); color: #f0b547; }
+.connection-pill.connecting { background: rgba(89, 106, 130, .2); color: #8d9bb0; }
+.connection-pill.disconnected { background: rgba(170, 52, 61, .22); color: #f27982; }
+.mobile-bell { display: none; border: 0; background: transparent; color: #9aa8bb; }
+
+.sidebar { position: fixed; inset: 37px auto 0 0; z-index: 3; display: flex; width: 96px; flex-direction: column; padding: 15px 4px 15px; border-right: 1px solid var(--border); background: var(--sidebar); }
+.side-nav { display: flex; flex-direction: column; gap: 4px; }
+.nav-item { display: flex; min-height: 24px; align-items: center; gap: 8px; padding: 0 7px; border: 0; border-radius: 4px; background: transparent; color: #91a0b3; cursor: pointer; font-size: 6px; text-align: left; }
+.nav-item > svg { width: 9px; height: 9px; flex: 0 0 auto; stroke-width: 1.7; }
+.nav-item:hover { background: rgba(255,255,255,.035); color: #dce5ef; }
+.nav-item.active { background: #202a3a; color: #e6edf6; }
+.nav-item.active > svg { color: var(--gold); }
+.workspace { display: flex; flex-direction: column; gap: 7px; margin-top: auto; padding: 10px 4px 5px; border-top: 1px solid var(--border); }
+.workspace-label { color: #647288; font-size: 5px; letter-spacing: .12em; }
+.workspace > strong { color: #d6deea; font-size: 6px; font-weight: 500; }
+.environment-pill { align-self: flex-start; margin-top: 7px; padding: 4px 6px; background: rgba(145, 95, 10, .22); color: #eab342; font-size: 5px; font-weight: 750; letter-spacing: .04em; }
+
+.main-content { min-height: 100vh; margin-left: 96px; padding-top: 37px; }
+.dashboard { width: min(100%, 1380px); margin: 0 auto; padding: 12px 13px 15px; }
+.page-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.page-heading h1 { color: #e5eaf2; font-size: 13px; font-weight: 650; letter-spacing: -.025em; }
+.page-heading p { margin-top: 3px; color: #8492a5; font-size: 6px; }
+.symbol-pill { padding: 4px 8px; background: rgba(172, 112, 16, .19); color: #e3b24d; font-size: 6px; font-weight: 700; }
