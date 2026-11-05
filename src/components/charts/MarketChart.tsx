@@ -14,6 +14,8 @@ export function MarketChart({ candles, currentCandle, loading, timeframe }: Mark
   const chartRef = useRef<IChartApi | null>(null)
   const seriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null)
   const currentCandleRef = useRef(currentCandle)
+  const loadedTimeframeRef = useRef<Timeframe | null>(null)
+  const loadedCandlesRef = useRef<Candle[] | null>(null)
 
   useEffect(() => {
     currentCandleRef.current = currentCandle
@@ -87,15 +89,26 @@ export function MarketChart({ candles, currentCandle, loading, timeframe }: Mark
     const series = seriesRef.current
     if (!series || loading || candles.length === 0) return
 
-    const latest = currentCandleRef.current
-    const data = latest ? [...candles, latest] : candles
-    series.setData(data)
-    chartRef.current?.timeScale().fitContent()
+    if (loadedTimeframeRef.current !== timeframe) {
+      const latest = currentCandleRef.current
+      series.setData(latest ? [...candles, latest] : candles)
+      loadedTimeframeRef.current = timeframe
+      loadedCandlesRef.current = candles
+      chartRef.current?.timeScale().fitContent()
+      return
+    }
+
+    if (loadedCandlesRef.current !== candles) {
+      loadedCandlesRef.current = candles
+      const latest = currentCandleRef.current
+      if (latest) series.update(latest)
+    }
   }, [candles, loading, timeframe])
 
   useEffect(() => {
-    if (currentCandle) seriesRef.current?.update(currentCandle)
-  }, [currentCandle])
+    if (loadedTimeframeRef.current !== timeframe || !currentCandle) return
+    seriesRef.current?.update(currentCandle)
+  }, [currentCandle, timeframe])
 
   return (
     <div className="chart-plot">
