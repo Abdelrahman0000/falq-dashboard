@@ -1,38 +1,81 @@
 # FALQ — Falcon Intelligence
 
-A responsive XAU/USD market dashboard demo built with React, TypeScript, Vite, Tailwind CSS, and TradingView Lightweight Charts. All market data and signals are simulated; the app does not connect to a real market, backend, or AI service.
+**XAU/USD Market Intelligence Dashboard (Demo)**
 
-## Run locally
+A professional, responsive financial analytics dashboard focused on **Gold / US Dollar (XAU/USD)**.  
+Built as a frontend engineering demonstration for FALQ — Falcon Intelligence.
+
+> **Live Demo:** [https://falq-dashboard.vercel.app](https://falq-dashboard.vercel.app)
+
+---
+
+### Overview
+
+This project demonstrates a clean, modern financial interface capable of handling continuously changing market data.  
+It focuses purely on **frontend engineering excellence** — no real backend, no live market APIs, and no proprietary AI engines.
+
+All price data, candlesticks, signals, and connection states are **fully simulated**.
+
+The goal is to showcase:
+
+- Professional financial UI/UX
+- Real-time data handling patterns
+- Clean component architecture
+- Type-safe React + TypeScript practices
+- Production-ready chart integration
+- Responsive design across devices
+
+---
+
+### Key Features
+
+- **Interactive Candlestick Chart**  
+  Powered by TradingView Lightweight Charts with multiple timeframes (`1m`, `5m`, `15m`, `1H`, `4H`, `1D`, `1M`).
+
+- **Simulated Real-Time Price Feed**  
+  Price ticks arrive every \~2 seconds. The chart updates the current candle smoothly without full re-renders.
+
+- **Connection State Management**  
+  Clear visual feedback for `Connected`, `Reconnecting`, and `Disconnected` states with automatic recovery simulation.
+
+- **Market Overview Cards**  
+  Last price, 24H High/Low, Volume, Market Signal, Risk Snapshot, and Recent Activity.
+
+- **Modular Architecture**  
+  Components, hooks, services, and data layers are cleanly separated for easy extension into a full platform.
+
+- **Fully Responsive**  
+  Optimized for desktop, tablet, and mobile.
+
+- **Type-Safe**  
+  Strict TypeScript types for candles, timeframes, ticks, and connection status.
+
+---
+
+### Tech Stack
+
+| Category              | Technology                          |
+|-----------------------|-------------------------------------|
+| Framework             | React 19 + TypeScript               |
+| Build Tool            | Vite                                |
+| Styling               | Tailwind CSS v4                     |
+| Charts                | TradingView Lightweight Charts v5   |
+| Icons                 | Lucide React                        |
+| Testing               | Vitest + Testing Library            |
+| Linting               | Oxlint                              |
+| Deployment            | Vercel                              |
+
+---
+
+### Getting Started
+
+#### Prerequisites
+- Node.js 18+ 
+- npm
+
+#### Installation
 
 ```bash
+git clone https://github.com/Abdelrahman0000/falq-dashboard.git
+cd falq-dashboard
 npm install
-npm run dev
-```
-
-## Checks
-
-```bash
-npm run build
-npm run lint
-npm test
-```
-
-## Structure
-
-- `src/app/` — app-level composition
-- `src/components/layout/` — page shell, header, navigation, and brand
-- `src/features/market/components/` — market-specific display components
-- `src/features/market/data/` — dashboard constants and display data
-- `src/features/market/hooks/` — dashboard state orchestration
-- `src/components/charts/MarketChart.tsx` — Lightweight Charts adapter and lifecycle
-- `src/hooks/` — reusable stateful behavior (market feed and UTC clock)
-- `src/services/` — mock REST-style snapshot and simulated WebSocket
-- `src/data/` — generated OHLC candles and data tests
-- `src/lib/` — shared formatting utilities
-- `src/styles/` — design tokens, layout, market components, responsive rules, and animations
-- `src/assets/` — image and static asset files imported by the components that use them
-- `src/types.ts` — market candle, timeframe, and connection types
-
-The UI components receive typed data through props; fetching and feed updates stay in hooks/services, static display values live in feature data modules, and chart-library lifecycle code stays behind the chart component. This keeps individual UI, data, and styling changes scoped to their own files.
-
-The chart period controls update the mock candle interval (`1m` through `1D`, plus calendar-month `1M` candles). Candles use UTC-aligned boundaries and one deterministic mock price curve, so changing periods preserves the underlying price timeline. The illustrative market signal is recalculated from the selected timeframe's candles. A simulated price tick arrives every two seconds. The feed periodically moves through reconnecting and disconnected states before recovering, and failed snapshot requests show an explicit error with a retry action.
