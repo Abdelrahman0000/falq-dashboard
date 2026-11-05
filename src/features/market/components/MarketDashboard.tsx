@@ -38,7 +38,11 @@ export function MarketDashboard() {
 
         <aside className="insights-column">
           <MarketSignalCard signal={market.signal} timeframe={market.timeframe} />
-          <MarketStatusCard status={market.status} />
+          <MarketStatusCard
+            status={market.status}
+            onSimulateDisconnect={market.simulateDisconnect}
+            onReconnect={market.reconnectFeed}
+          />
           <DemoDisclaimer />
         </aside>
       </div>

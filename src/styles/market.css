@@ -38,7 +38,7 @@
 .confidence-label { display: flex; align-items: center; justify-content: space-between; margin-top: 11px; color: #8190a4; font-size: 5px; }
 .confidence-label strong { color: #f2bf4d; font-size: 7px; }
 .confidence-track { height: 3px; margin-top: 4px; overflow: hidden; border-radius: 3px; background: #1c2938; }
-.confidence-track > span { display: block; width: 78%; height: 100%; border-radius: inherit; background: #efb847; }
+.confidence-track > span { display: block; height: 100%; border-radius: inherit; background: #efb847; }
 .signal-caption { margin-top: 7px; color: #75849a; font-size: 5px; }
 .signal-tags { display: flex; gap: 8px; margin-top: 8px; padding-top: 6px; border-top: 1px solid #1a2533; color: #77869a; font-size: 5px; }
 .market-status-card .card-heading { margin-bottom: 9px; }
@@ -46,6 +46,9 @@
 .status-list > div, .risk-list > div { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .status-list dt, .risk-list dt { color: #77869a; font-size: 5px; }
 .status-list dd, .risk-list dd { margin: 0; color: #d4dce7; font-size: 5px; text-align: right; }
+.connection-action { align-self: flex-start; margin-top: 12px; padding: 6px 9px; border: 1px solid #344255; border-radius: 5px; background: #111a28; color: #cbd5e1; cursor: pointer; font-size: 7px; }
+.connection-action:hover:not(:disabled) { border-color: #b9852d; color: #f0bd52; }
+.connection-action:disabled { cursor: not-allowed; opacity: .6; }
 .disclaimer { display: flex; align-items: center; gap: 4px; padding: 0 2px; color: #7e8ba0; font-size: 5px; }
 .disclaimer > svg { flex: 0 0 auto; color: #91a0b3; }
 

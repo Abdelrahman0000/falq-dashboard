@@ -3,9 +3,11 @@ import { getConnectionLabel } from '../../../lib/formatters'
 
 interface MarketStatusCardProps {
   status: ConnectionStatus
+  onSimulateDisconnect: () => void
+  onReconnect: () => void
 }
 
-export function MarketStatusCard({ status }: MarketStatusCardProps) {
+export function MarketStatusCard({ status, onSimulateDisconnect, onReconnect }: MarketStatusCardProps) {
   const statusLabel = getConnectionLabel(status)
 
   return (
@@ -21,10 +23,27 @@ export function MarketStatusCard({ status }: MarketStatusCardProps) {
             {statusLabel === 'CONNECTED' ? 'Connected' : statusLabel.toLowerCase()}
           </dd>
         </div>
-        <div><dt>Last heartbeat</dt><dd>2 sec ago</dd></div>
+        <div>
+          <dt>Price ticks</dt>
+          <dd>
+            {status === 'connected'
+              ? 'Every 2 sec'
+              : status === 'disconnected'
+                ? 'Paused'
+                : 'Waiting…'}
+          </dd>
+        </div>
         <div><dt>Data source</dt><dd>Mock REST + WS</dd></div>
         <div><dt>Session</dt><dd>London / NY overlap</dd></div>
       </dl>
+      <button
+        className="connection-action"
+        type="button"
+        onClick={status === 'disconnected' ? onReconnect : onSimulateDisconnect}
+        disabled={status === 'connecting'}
+      >
+        {status === 'disconnected' ? 'Reconnect feed' : 'Simulate disconnect'}
+      </button>
     </section>
   )
 }

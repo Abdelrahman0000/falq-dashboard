@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { getCandleStart, getMockPriceAt } from '../data/mockMarket'
 import { fetchMockMarketSnapshot } from '../services/mockMarketApi'
-import { subscribeToSimulatedFeed } from '../services/simulatedSocket'
+import { simulatedMarketFeed } from '../services/simulatedSocket'
 import type { Candle, ConnectionStatus, Timeframe } from '../types'
 
 export function useMarketData(timeframe: Timeframe) {
@@ -59,7 +59,7 @@ export function useMarketData(timeframe: Timeframe) {
   }, [timeframe, requestVersion])
 
   useEffect(() => {
-    const unsubscribe = subscribeToSimulatedFeed(
+    const unsubscribe = simulatedMarketFeed.subscribe(
       ({ price: nextPrice, time }) => {
         priceRef.current = nextPrice
         setPrice(nextPrice)
@@ -105,5 +105,15 @@ export function useMarketData(timeframe: Timeframe) {
   const loading = !requestCompleted && !requestFailed
   const error = requestFailed ? fetchError.message : null
   const retry = () => setRequestVersion((version) => version + 1)
-  return { candles, currentCandle, price, status, loading, error, retry }
+  return {
+    candles,
+    currentCandle,
+    price,
+    status,
+    loading,
+    error,
+    retry,
+    simulateDisconnect: () => simulatedMarketFeed.simulateDisconnect(),
+    reconnectFeed: () => simulatedMarketFeed.reconnect(),
+  }
 }

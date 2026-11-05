@@ -12,7 +12,7 @@ export function MarketMetricsGrid({ price }: MarketMetricsGridProps) {
       <MetricCard
         label="LAST PRICE"
         value={`$${formatPrice(price)}`}
-        caption="+0.84% today"
+        caption="Simulated · +0.84% today"
         valueTone="green"
         captionTone="green"
       />
